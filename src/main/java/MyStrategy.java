@@ -28,10 +28,9 @@ public class MyStrategy {
         LootBox nearestWeapon = null;
         for (LootBox lootBox : game.getLootBoxes()) {
             if (lootBox.getItem() instanceof Item.Weapon) {
-                if (nearestWeapon == null || distanceSqr(unit.getPosition(),
-                                                         lootBox.getPosition()) < distanceSqr(unit.getPosition(),
-                                                                                              nearestWeapon
-                                                                                                  .getPosition())) {
+                if (nearestWeapon == null ||
+                    distanceSqr(unit.getPosition(), lootBox.getPosition()) < distanceSqr(unit.getPosition(),
+                                                                                         nearestWeapon.getPosition())) {
                     nearestWeapon = lootBox;
                 }
             }
@@ -49,18 +48,14 @@ public class MyStrategy {
                                  nearestEnemy.getPosition().getY() - unit.getPosition().getY());
         }
         boolean jump = targetPos.getY() > unit.getPosition().getY();
-        if (targetPos.getX() > unit.getPosition().getX() && game.getLevel()
-                                                                .getTiles()[(int) (unit.getPosition().getX()
-                                                                                   + 1)][(int) (unit.getPosition()
-                                                                                                    .getY())]
-                                                            == Tile.WALL) {
+        if (targetPos.getX() > unit.getPosition().getX() &&
+            game.getLevel().getTiles()[(int) (unit.getPosition().getX() + 1)][(int) (unit.getPosition().getY())]
+            == Tile.WALL) {
             jump = true;
         }
-        if (targetPos.getX() < unit.getPosition().getX() && game.getLevel()
-                                                                .getTiles()[(int) (unit.getPosition().getX()
-                                                                                   - 1)][(int) (unit.getPosition()
-                                                                                                    .getY())]
-                                                            == Tile.WALL) {
+        if (targetPos.getX() < unit.getPosition().getX() &&
+            game.getLevel().getTiles()[(int) (unit.getPosition().getX() - 1)][(int) (unit.getPosition().getY())]
+            == Tile.WALL) {
             jump = true;
         }
         UnitAction action = new UnitAction();
